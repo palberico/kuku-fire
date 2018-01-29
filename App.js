@@ -1,15 +1,28 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import firebase from 'react-native-firebase';
 
-export default class App extends React.Component {
+class App extends React.Component {
+  state = { isAuthenticated: false }
+
+  componentDidMount() {
+    firebase.auth().signInAnonymously()
+      .then( () => {
+        this.setState({
+          isAuthenticated: true,
+        })
+      });
+  }
+
   render() {
+    if (!this.state.isAuthenticated) {
+      return null;
+    }
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-        <Text>Changes you make will automatically reload.</Text>
-        <Text>Shake your phone to open the developer menu.</Text>
+      <View>
+        <Text>Firebase Anon Auth Works!</Text>
       </View>
-    );
+    )
   }
 }
 
@@ -21,3 +34,5 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
 });
+
+export default App;
