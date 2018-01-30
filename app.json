@@ -1,5 +1,7 @@
 {
   "expo": {
+    "name" : "kuku",
+    "slug" : "kuku",
     "sdkVersion": "25.0.0"
   }
 }
