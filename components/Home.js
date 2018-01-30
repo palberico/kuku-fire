@@ -2,14 +2,21 @@
 import React, { Component } from 'react';
 
 // Styles
-import { Text, View, Image, Dimensions, StyleSheet } from 'react-native';
+import { 
+  Text, 
+  View, 
+  Image, 
+  Dimensions, 
+  StyleSheet, 
+} from 'react-native';
 import {
-  Container,
-  Header,
-  Content,
-  Button,
   Icon,
   Right,
+  Header,
+  Button,
+  Footer,
+  Content,
+  Container,
 } from 'native-base';
 
 // Router
@@ -43,7 +50,7 @@ export default class Home extends Component {
   render() {
     return (
       <Container>
-        <Header>
+        <Header style={styles.headerAndFooter}>
           <Right>
             <Button iconRight transparent onPress={this.guest}>
               <Text style={styles.guest}>GUEST</Text>
@@ -73,6 +80,7 @@ export default class Home extends Component {
             <Text style={styles.signinText}>Have an account? Sign in</Text>
           </Button>
         </Content>
+        <Footer style={styles.footer}/>
       </Container>
     )
   }
@@ -120,17 +128,25 @@ const styles = StyleSheet.create({
   },
   signinText:{
     textAlign: 'center',
-    marginTop: 120,
+    paddingBottom: 5,
   },
   background:{
     backgroundColor: '#fff',
   },
   guest: {
     fontWeight: 'bold',
+    color: '#fff'
   },
   icon:{
     paddingLeft: 2,
-    color: '#000',
+    color: '#fff',
+  },
+  headerAndFooter:{
+    backgroundColor: '#000',
+  },
+  footer:{
+    height: 50,
+    backgroundColor: '#000',
   },
 });
 
