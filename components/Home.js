@@ -19,6 +19,7 @@ import {
   Container,
 } from 'native-base';
 
+
 // Router
 import { Link } from 'react-router-native';
 
@@ -50,7 +51,7 @@ export default class Home extends Component {
   render() {
     return (
       <Container>
-        <Header style={styles.headerAndFooter}>
+        <Header style={styles.header}>
           <Right>
             <Button iconRight transparent onPress={this.guest}>
               <Text style={styles.guest}>GUEST</Text>
@@ -141,7 +142,8 @@ const styles = StyleSheet.create({
     paddingLeft: 2,
     color: '#fff',
   },
-  headerAndFooter:{
+  header:{
+    borderBottomWidth: 0,
     backgroundColor: '#000',
   },
   footer:{

@@ -2,21 +2,29 @@
 import React, { Component } from 'react';
 
 // Styles
-import { Text, View, Dimensions } from 'react-native';
+import Modal from 'react-native-modalbox';
+import { 
+  Text,
+  View, 
+  Dimensions, 
+  StyleSheet, 
+  TouchableHighlight, 
+} from 'react-native';
 import {
-  Container,
-  Header,
-  Content,
+  Card,
+  Left,
   Form,
   Item,
   Input,
   Label,
-  Button,
-  Left,
   Right,
+  Header,
+  Button,
+  Content,
+  Container,
 } from 'native-base';
 
-class Register extends Component {
+export default class Register extends Component {
 
   cancelButton = () => {
     this.props.history.push('/')
@@ -24,28 +32,35 @@ class Register extends Component {
 
   doneButton = () => {
     this.props.history.push('/search')
-  }
+  }  
 
   render() {
     return (
       <Container>
-        <Header>
+        <Header style={styles.header}>
           <Left>
             <Button transparent onPress={this.cancelButton}>
-              <Text>Cancel</Text>
+              <Text style={styles.headerSmallText}>Cancel</Text>
             </Button>
           </Left>
-          <Text style={styles.head}>Register</Text>
+            <Text style={styles.headerPrimeText}>Register</Text>
           <Right>
-            <Button transparent onPress={this.doneButton}>
-              <Text>Done</Text>
+            <Button transparent>
+              <TouchableHighlight onPress={() => this.refs.modal1.open()} >
+                <Text style={styles.headerSmallText}>Done</Text>
+              </TouchableHighlight>
             </Button>
           </Right>
         </Header>
-          <Content scrollEnabled={false}>
+        <Content style={styles.content} scrollEnabled={false}>
+          <Card>
             <Form>
               <Item floatingLabel>
                 <Label>First Name</Label>
+                <Input />
+              </Item>
+              <Item floatingLabel>
+                <Label>Last Name</Label>
                 <Input />
               </Item>
               <Item floatingLabel>
@@ -61,39 +76,62 @@ class Register extends Component {
                 <Input secureTextEntry={true} />
               </Item>
             </Form>
-            {/* ---Future--- preferences/categproes drop down (Men's, Women's, Accessories) on login landing shop */}
-          <View>
-            <Text style={styles.text}>By signing up and using Kuku, you are agreeing to its</Text>
-            <Text style={styles.text}>Terms and Conditions and Privacy Policy.</Text>
-          </View>
+          </Card>
         </Content>
+          <Modal ref={'modal1'} position={'center'} style={styles.modal}>
+            <View>
+              <Text style={styles.text}>By signing up and using Kuku, you are agreeing to its</Text>
+              <Text style={styles.text}>Terms and Conditions and Privacy Policy.</Text>
+            </View>
+              <Button block light style={styles.modalButton} onPress={this.doneButton}>
+                <Text style={styles.modalButtonText}>Join Kuku</Text>
+              </Button>
+          </Modal>
       </Container>
     )
   }
 };
 
 const deviceY = Dimensions.get('window').height;
+const deviceX = Dimensions.get('window').width;
 
-const styles = {
+const styles = StyleSheet.create({
   text:{
     textAlign: 'center',
     marginTop: 10,
     fontSize: 15,
   },
-  btn: {
-    marginTop: 20,
+  header:{
+    borderBottomWidth: 0,
+    backgroundColor: '#000',
+  },
+  headerPrimeText:{
+    marginTop: 10,
+    fontSize: 24,
+    color: '#fff',
+  },
+  headerSmallText:{
+    color: '#fff',
+  },
+  modal:{
+    height: 150,
+    width: 400,
+    borderRadius: 10
+  },
+  modalButton: {
+    marginTop: 40,
     width: deviceY/ 2.5,
     marginRight: 'auto',
     marginLeft: 'auto',
+    backgroundColor: 'rgba(52, 52, 52, 0.8)',
   },
-  textBtn1:{
+  modalButtonText:{
     fontSize: 18,
-    color: 'white'
+    color: '#fff',
   },
-  head:{
-    marginTop: 10,
-    fontSize: 24,
+  content:{
+    backgroundColor: '#000',
   },
-};
+});
 
-export default Register;
+ 

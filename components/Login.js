@@ -12,7 +12,6 @@ import {
   Form,
   Item,
   Left,
-  View,
   Input,
   Label,
   Right,
@@ -36,7 +35,7 @@ export default class Login extends Component {
   render() {
     return (
       <Container>
-        <Header style={styles.headerAndFooter}>
+        <Header style={styles.header}>
           <Left>
             <Button transparent onPress={this.cancelButton}>
               <Text style={styles.headerSmallText}>Cancel</Text>
@@ -103,7 +102,8 @@ const styles = StyleSheet.create({
     marginTop: 25,
     fontSize: 15
   },
-  headerAndFooter:{
+  header:{
+    borderBottomWidth: 0,
     backgroundColor: '#000',
   },
   headerPrimeText:{
